@@ -32,4 +32,21 @@ $router->group(['middleware'=>'client.credentials'], function() use ($router){
 
   $router->delete('/authors/{author}', 'AuthorController@destroy');
 
+
+
+    $router->get('/users','UserController@index');
+    $router->post('/users','UserController@store');
+    $router->get('/users/{user}','UserController@show');
+    $router->put('/users/{user}','UserController@update');
+    $router->patch('/users/{user}','UserController@update');
+    $router->delete('/users/{user}', 'UserController@destroy');
+
+
+
+
+});
+
+$router->group(['middleware'=>'auth:api'], function() use ($router){
+$router->get('/users/me','UserController@me');
+
 });
